@@ -1,7 +1,7 @@
 package initialize
 
 import (
-	httpapp "app/cmd/merge-blob-service/delivery/http"
+	httpapp "app/cmd/merge-blob/delivery/http"
 	"app/internal/connection"
 	"fmt"
 	"log"

@@ -1,7 +1,7 @@
 package processhandle
 
 import (
-	appcommon "app/cmd/merge-blob-service/app_common"
+	appcommon "app/cmd/merge-blob/app_common"
 	"app/generated/grpc/servicegrpc"
 	"app/internal/connection"
 	constant "app/internal/constants"

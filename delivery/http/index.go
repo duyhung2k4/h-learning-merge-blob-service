@@ -1,7 +1,7 @@
 package httpapp
 
 import (
-	processhandle "app/cmd/merge-blob-service/delivery/http/process"
+	processhandle "app/cmd/merge-blob/delivery/http/process"
 	"app/internal/connection"
 	"log"
 	"net/http"

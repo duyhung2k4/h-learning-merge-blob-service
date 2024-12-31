@@ -1,6 +1,6 @@
 package initialize
 
-import appcommon "app/cmd/merge-blob-service/app_common"
+import appcommon "app/cmd/merge-blob/app_common"
 
 func runAppCommon() {
 	appcommon.InitConfig()

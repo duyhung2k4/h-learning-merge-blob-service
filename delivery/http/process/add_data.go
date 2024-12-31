@@ -1,7 +1,7 @@
 package processhandle
 
 import (
-	appcommon "app/cmd/merge-blob-service/app_common"
+	appcommon "app/cmd/merge-blob/app_common"
 	constant "app/internal/constants"
 	dtoclientservice "app/internal/dto/dto_client_service"
 	httpresponse "app/pkg/http_response"

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"app/cmd/merge-blob-service/initialize"
+	"app/cmd/merge-blob/initialize"
 	"app/internal/connection"
 	"sync"
 )
