@@ -44,6 +44,15 @@ func (h *processHandle) Init(ctx *gin.Context) {
 		return
 	}
 
+	newProcessQuantityService, err := h.grpcQuantityClient.InitProcessQuantity(ctx, &servicegrpc.InitProcessQuantityRequest{
+		UuidProcess: uuidProcess,
+	})
+	if err != nil {
+		logapp.Logger("init-process-quantity", err.Error(), constant.ERROR_LOG)
+		httpresponse.InternalServerError(ctx, err)
+		return
+	}
+
 	model := entity.ProcessStream{
 		ProfileId: profileId,
 		IpMergeServer: fmt.Sprintf(
@@ -52,6 +61,7 @@ func (h *processHandle) Init(ctx *gin.Context) {
 			connection.GetConnect().MergeBlobSevice.Port,
 		),
 		IpStreamServer: newProcessStreamService.Ip,
+		IpQuantity360p: newProcessQuantityService.Ip,
 		Uuid:           uuidProcess,
 		Status:         entity.PROCESS_PENDING,
 	}

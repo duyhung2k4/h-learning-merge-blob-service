@@ -2,6 +2,7 @@ package httpapp
 
 import (
 	processhandle "app/cmd/merge-blob/delivery/http/process"
+	streamhandle "app/cmd/merge-blob/delivery/http/stream"
 	"app/internal/connection"
 	"log"
 	"net/http"
@@ -25,6 +26,7 @@ func Register() http.Handler {
 	}))
 
 	processhandle.Register(r)
+	streamhandle.Register(r)
 
 	log.Printf(
 		"Server h-learning-merge-blob-service starting success! URL: http://%s:%s",

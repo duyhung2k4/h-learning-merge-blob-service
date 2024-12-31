@@ -14,6 +14,7 @@ func Run() {
 	listAsync := []func(){
 		initProcessStream,
 		runHttpServer,
+		runGRPC,
 	}
 
 	var wg sync.WaitGroup

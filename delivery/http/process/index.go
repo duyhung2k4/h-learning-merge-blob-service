@@ -17,6 +17,7 @@ import (
 type processHandle struct {
 	chanListenAddProcessStream (chan string)
 	grpcStreamClient           servicegrpc.StreamServiceClient
+	grpcQuantityClient         servicegrpc.QuantityServiceClient
 	queryProcessStream         query.QueryService[entity.ProcessStream]
 	rawQueryProcessStream      rawquery.QueryRawService[entity.ProcessStream]
 }
@@ -30,6 +31,7 @@ func NewHandle() ProcessHandle {
 	return &processHandle{
 		chanListenAddProcessStream: appcommon.GetChanListenAddProcessStream(),
 		grpcStreamClient:           connection.GetGrpcClientStream(),
+		grpcQuantityClient:         connection.GetGrpcClientQuantity(),
 		queryProcessStream:         query.Register[entity.ProcessStream](),
 		rawQueryProcessStream:      rawquery.Register[entity.ProcessStream](),
 	}

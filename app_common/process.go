@@ -7,6 +7,10 @@ import (
 
 var mutexProcess sync.Mutex
 
+func makeChan() {
+	chanListenAddProcessStream = make(chan string)
+}
+
 func makeMapProcess() {
 	processStream = map[string](chan string){}
 }
