@@ -31,7 +31,7 @@ func NewHandle() ProcessHandle {
 	return &processHandle{
 		chanListenAddProcessStream: appcommon.GetChanListenAddProcessStream(),
 		grpcStreamClient:           connection.GetGrpcClientStream(),
-		grpcQuantityClient:         connection.GetGrpcClientQuantity(),
+		grpcQuantityClient:         connection.ConnectGrpcServerQuantityProxy(),
 		queryProcessStream:         query.Register[entity.ProcessStream](),
 		rawQueryProcessStream:      rawquery.Register[entity.ProcessStream](),
 	}
