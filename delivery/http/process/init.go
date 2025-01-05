@@ -2,7 +2,7 @@ package processhandle
 
 import (
 	appcommon "app/cmd/merge-blob/app_common"
-	"app/generated/grpc/servicegrpc"
+	"app/generated/proto/servicegrpc"
 	"app/internal/connection"
 	constant "app/internal/constants"
 	dtoclientservice "app/internal/dto/dto_client_service"
@@ -44,6 +44,7 @@ func (h *processHandle) Init(ctx *gin.Context) {
 		return
 	}
 
+	// Quantity
 	newProcessQuantityService, err := h.grpcQuantityClient.InitProcessQuantity(ctx, &servicegrpc.InitProcessQuantityRequest{
 		UuidProcess: uuidProcess,
 	})
@@ -53,6 +54,7 @@ func (h *processHandle) Init(ctx *gin.Context) {
 		return
 	}
 
+	// info process
 	model := entity.ProcessStream{
 		ProfileId: profileId,
 		IpMergeServer: fmt.Sprintf(

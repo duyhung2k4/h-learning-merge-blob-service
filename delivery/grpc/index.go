@@ -1,6 +1,6 @@
 package grpchandle
 
-import "app/generated/grpc/servicegrpc"
+import "app/generated/proto/servicegrpc"
 
 type grpcHandle struct {
 	servicegrpc.UnimplementedMergeBlobServiceServer

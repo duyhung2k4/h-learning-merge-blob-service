@@ -11,6 +11,7 @@ type handleStream struct{}
 
 type HandleStream interface {
 	SendBlob(ctx *gin.Context)
+	StreamM3U8(ctx *gin.Context)
 }
 
 func NewHandle() HandleStream {
@@ -25,5 +26,12 @@ func Register(r *gin.Engine) {
 		Endpoint:   "stream/blob",
 		Middleware: []gin.HandlerFunc{},
 		Handle:     handle.SendBlob,
+	})
+
+	routerconfig.AddRouter(r, routerconfig.RouterConfig{
+		Method:     constant.GET_HTTP,
+		Endpoint:   "stream/m3u8/:uuid/:filename",
+		Middleware: []gin.HandlerFunc{},
+		Handle:     handle.StreamM3U8,
 	})
 }
