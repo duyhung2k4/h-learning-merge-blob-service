@@ -25,7 +25,6 @@ func (h *grpcHandle) SendMergeBlob(stream grpc.ClientStreamingServer[servicegrpc
 		log.Fatalf("Error creating pipe: %v", err)
 	}
 
-	// Run FFmpeg play HLS
 	go runFFmpeg(readPipe, uuid)
 
 	for {
@@ -39,7 +38,6 @@ func (h *grpcHandle) SendMergeBlob(stream grpc.ClientStreamingServer[servicegrpc
 			return err
 		}
 
-		// Ghi dữ liệu nhận được vào pipe
 		_, err = writePipe.Write(req.Blob)
 		if err != nil {
 			log.Printf("Error writing to pipe: %v", err)
@@ -48,18 +46,18 @@ func (h *grpcHandle) SendMergeBlob(stream grpc.ClientStreamingServer[servicegrpc
 }
 
 func runFFmpeg(input *os.File, uuid string) {
-	// path save HLS output
+
 	outputPath := fmt.Sprintf("cmd/merge-blob/data/stream/%s", uuid)
 	os.MkdirAll(outputPath, os.ModePerm)
 
 	cmd := exec.Command("ffmpeg",
 		"-f", "mpegts",
-		"-i", "pipe:0", // Nhận từ pipe
-		"-c", "copy", // Copy codec hiện tại, không mã hóa lại
-		"-hls_time", "5", // Mỗi đoạn dài 1 giây
-		"-hls_list_size", "0", // Lưu tất cả danh sách (không ghi đè)
+		"-i", "pipe:0",
+		"-c", "copy",
+		"-hls_time", "5",
+		"-hls_list_size", "0",
 		"-f", "hls",
-		outputPath+"/stream.m3u8", // Đường dẫn lưu HLS
+		outputPath+"/stream.m3u8",
 	)
 
 	cmd.Stdin = input
