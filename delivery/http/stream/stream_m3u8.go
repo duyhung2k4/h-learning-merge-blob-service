@@ -15,7 +15,7 @@ func (c *handleStream) StreamM3U8(ctx *gin.Context) {
 	uuid := ctx.Param("uuid")
 	filename := ctx.Param("filename")
 	log.Println(filename)
-	filepath := fmt.Sprintf("cmd/merge-blob/data/stream/%s/%s", uuid, filename)
+	filepath := fmt.Sprintf("data/video/%s/360/index.m3u8", uuid)
 
 	if _, err := os.Stat(filepath); os.IsNotExist(err) {
 		logapp.Logger("get-file-hls", err.Error(), constant.ERROR_LOG)
